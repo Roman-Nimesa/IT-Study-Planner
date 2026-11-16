@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IT Study Planner — планировщик учебных задач студента">
+  <title>IT Study Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div><p class="eyebrow">STUDENT WORKSPACE</p><h1>IT Study Planner</h1><p class="subtitle">Планируй учёбу. Выполняй задачи. Следи за прогрессом.</p></div>
+      <div class="date-chip" id="today"></div>
+    </header>
+
+    <section class="panel auth-panel" id="authPanel">
+      <div class="section-heading"><p class="eyebrow">CLOUD ACCOUNT</p><h2 id="authTitle">Вход в аккаунт</h2></div>
+      <p class="auth-hint">Войди, чтобы хранить свои задачи в облаке Firebase.</p>
+      <form id="authForm" class="auth-form">
+        <label class="sr-only" for="emailInput">Электронная почта</label>
+        <input id="emailInput" type="email" placeholder="Электронная почта" autocomplete="email" required>
+        <label class="sr-only" for="passwordInput">Пароль</label>
+        <input id="passwordInput" type="password" placeholder="Пароль (минимум 6 символов)" autocomplete="current-password" minlength="6" required>
+        <button class="primary-btn" id="authSubmit" type="submit">Войти</button>
+      </form>
+      <div class="auth-actions"><button class="text-btn" id="toggleAuth" type="button">Нет аккаунта? Зарегистрироваться</button></div>
+      <p id="authMessage" class="form-message" role="status"></p>
+    </section>
+
+    <section id="planner" hidden>
+      <div class="account-bar"><span id="userEmail"></span><button class="text-btn" id="logoutBtn" type="button">Выйти</button></div>
+      <section class="stats" aria-label="Статистика задач">
+        <article class="stat-card"><span>Всего задач</span><strong id="totalCount">0</strong></article>
+        <article class="stat-card"><span>Выполнено</span><strong id="doneCount">0</strong></article>
+        <article class="stat-card"><span>Осталось</span><strong id="leftCount">0</strong></article>
+      </section>
+      <section class="progress-card"><div class="progress-heading"><span>Общий прогресс</span><strong id="progressText">0%</strong></div><div class="progress-track"><div id="progressBar" class="progress-fill"></div></div></section>
+      <section class="panel">
+        <div class="section-heading"><div><p class="eyebrow">MY TASKS</p><h2>Добавить задачу</h2></div></div>
+        <form id="taskForm" class="task-form">
+          <label class="sr-only" for="taskInput">Название задачи</label>
+          <input id="taskInput" type="text" maxlength="120" placeholder="Например: закончить макет сайта..." required>
+          <label class="sr-only" for="categoryInput">Категория</label>
+          <select id="categoryInput"><option value="HTML">HTML</option><option value="CSS">CSS</option><option value="JavaScript">JavaScript</option><option value="Другое">Другое</option></select>
+          <button class="primary-btn" type="submit">＋ Добавить</button>
+        </form>
+        <p id="formMessage" class="form-message" role="status"></p>
+      </section>
+      <section class="panel">
+        <div class="tasks-toolbar"><div><p class="eyebrow">YOUR WORK</p><h2>Список задач</h2></div><div class="filters" role="group" aria-label="Фильтр задач"><button class="filter-btn active" data-filter="all">Все</button><button class="filter-btn" data-filter="active">Активные</button><button class="filter-btn" data-filter="done">Выполненные</button></div></div>
+        <div id="taskList" class="task-list"></div><p id="emptyState" class="empty-state">Пока задач нет. Добавь первую задачу выше.</p>
+      </section>
+    </section>
+    <footer>Задачи сохраняются в облаке Firebase и доступны после входа в аккаунт.</footer>
+  </main>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
